@@ -69,4 +69,10 @@ Find the spark install path [suggested to install in /opt path]
 export SPARK_HOME=/opt/spark
 ```
 
- 
+## resources link
+- JSON
+https://github.com/spark-examples/spark-scala-examples/blob/master/src/main/resources/zipcodes.json
+- CSV
+https://github.com/spark-examples/spark-scala-examples/blob/master/src/main/resources/zipcodes.csv
+- 150000 and 2M records test in Scala (download as 7z and change to csv > parquet)
+https://eforexcel.com/wp/downloads-18-sample-csv-files-data-sets-for-testing-sales/ 
