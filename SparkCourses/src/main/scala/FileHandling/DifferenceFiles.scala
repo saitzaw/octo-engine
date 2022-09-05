@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 import java.io.FileNotFoundException
 
 object DifferenceFiles {
-  def main (args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit = {
     val spark = SparkSession
       .builder()
       .appName("FileHandlingApp")
@@ -21,10 +21,18 @@ object DifferenceFiles {
 
         //select required column
         val selectedZipCodeDF = zipcodeJsonDF
-          .select("City", "Country", "Lat", "Long", "Zipcode", "EstimatedPopulation")
+          .select(
+            "City",
+            "Country",
+            "Lat",
+            "Long",
+            "Zipcode",
+            "EstimatedPopulation"
+          )
 
         // remove the Null value from dataframe
-        val removeFromRecordIfPopulationIsNull = selectedZipCodeDF.na.drop(Seq("EstimatedPopulation"))
+        val removeFromRecordIfPopulationIsNull =
+          selectedZipCodeDF.na.drop(Seq("EstimatedPopulation"))
 
         // select records over 20000 population
         val selectLargePopulationDF = removeFromRecordIfPopulationIsNull
@@ -45,10 +53,18 @@ object DifferenceFiles {
 
         //select required column
         val selectedCSVZipCodeDF = zipcodeCSVDF
-          .select("City", "Country", "Lat", "Long", "Zipcode", "EstimatedPopulation")
+          .select(
+            "City",
+            "Country",
+            "Lat",
+            "Long",
+            "Zipcode",
+            "EstimatedPopulation"
+          )
 
         // remove the Null value from dataframe
-        val removeFromRecordIfPopulationIsNullCSV = selectedCSVZipCodeDF.na.drop(Seq("EstimatedPopulation"))
+        val removeFromRecordIfPopulationIsNullCSV =
+          selectedCSVZipCodeDF.na.drop(Seq("EstimatedPopulation"))
 
         // select records over 10000 population
         val selectCSVLargePopulationDF = removeFromRecordIfPopulationIsNullCSV
