@@ -85,15 +85,15 @@ object BasicStatistics {
     val panamaData = DFtoCheck.filter("country == 'Panama'")
     val panamaYear18Data =
       panamaData.filter("order_date BETWEEN '2018-01-01' AND '2018-12-31'")
-
     panamaYear18Data.show()
+
+    // basic stats
     panamaYear18Data.groupBy("item").sum("units_sold").show()
     panamaYear18Data.groupBy("item").max("units_sold").show()
     panamaYear18Data.groupBy("item").min("units_sold").show()
     panamaYear18Data.groupBy("item").avg("units_sold").show()
-
+    // write as csv
     csvFileSaver(panamaData, "panama_data.csv")
-
     spark.stop()
   }
 }
