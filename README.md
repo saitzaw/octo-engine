@@ -69,6 +69,59 @@ Find the spark install path [suggested to install in /opt path]
 export SPARK_HOME=/opt/spark
 ```
 
+## Zeppelin ##
+- data analysis 
+- ml model
+
+## Zepelin setup ##
+- path 
+```shell
+<path>/conf 
+```
+Note: <path> may be /usr/local/zeppelin/conf or /opt/zeppelin or /home/zeppelin
+
+- zeppelin-site.xml
+```shell
+cp zeppelin-site.xml.template zeppelin-site.xml
+```
+change the default port number 8080 to 9090 
+```shell
+<property>
+  <name>zeppelin.server.port</name>
+  <value>9090</value>
+  <description>Server port.</description>
+</property>
+``` 
+
+- basic auth
+```shell
+cp shiro.ini.template shiro.ini
+```
+open the shiro file and add user name and password
+
+- spark intereter 
+```shell
+cp zeppelin-env.sh.template zeppelin-env.sh
+```
+export the spark home
+```shell
+export SPARK_HOME=<path>
+```
+
+## integration with spark standalone cluster ##
+Zeppelin UI in Table form
+- Click on the User name then in serach box find spark
+Make sure to change default value to these setting
+
+1. spark.master to spark://<your-domain>:7077
+2. zeppelin.spark.enableSupportedVersionCheck to FALSE [click to unselect on check box]
+
+## Soft link for Zeppelin notebook ##
+- zeppelin notebook is running in /opt/zeppelin/notebook/SparkScala
+```shell
+ln -s /opt/zeppelin/notebook/SparkScala /home/sthz/octo-engine/ZeppelinNotebooks
+```
+
 ## resources link
 - JSON
 https://github.com/spark-examples/spark-scala-examples/blob/master/src/main/resources/zipcodes.json
@@ -77,4 +130,9 @@ https://github.com/spark-examples/spark-scala-examples/blob/master/src/main/reso
 - 150000 and 2M records test in Scala (download as 7z and change to csv > parquet)
 https://eforexcel.com/wp/downloads-18-sample-csv-files-data-sets-for-testing-sales/
 - Code example
-https://sparkbyexamples.com/ 
+https://sparkbyexamples.com/
+
+
+
+
+ 
