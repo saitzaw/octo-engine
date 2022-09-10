@@ -19,36 +19,36 @@ object ConvertToParquet {
       .getOrCreate()
 
     val filePath = "resources/"
-    val recordedFileName = "2mSalesRecords.csv"
+    val recordedFileName = "5mSalesRecords.csv"
 
     /*
-     * Schema definitions for 150000 records
+     * Schema definitions for 5M records
      * Let Date column be String type
      */
     val schemaToChange = StructType(
       Array(
-        StructField("Region", StringType, true),
-        StructField("Country", StringType, true),
-        StructField("Item Type", StringType, true),
-        StructField("Sales Channel", StringType, true),
-        StructField("Order Priority", StringType, true),
-        StructField("Order Date", StringType, true),
-        StructField("Order ID", IntegerType, true),
-        StructField("Ship Date", StringType, true),
-        StructField("Units Sold", IntegerType, true),
-        StructField("Unit Price", DoubleType, true),
-        StructField("Unit Cost", DoubleType, true),
-        StructField("Total Revenue", DoubleType, true),
-        StructField("Total Cost", DoubleType, true),
-        StructField("Total Profit", DoubleType, true)
+        StructField("Region", StringType, nullable = true),
+        StructField("Country", StringType, nullable = true),
+        StructField("Item Type", StringType, nullable = true),
+        StructField("Sales Channel", StringType, nullable = true),
+        StructField("Order Priority", StringType, nullable = true),
+        StructField("Order Date", StringType, nullable = true),
+        StructField("Order ID", IntegerType, nullable = true),
+        StructField("Ship Date", StringType, nullable = true),
+        StructField("Units Sold", IntegerType, nullable = true),
+        StructField("Unit Price", DoubleType, nullable = true),
+        StructField("Unit Cost", DoubleType, nullable = true),
+        StructField("Total Revenue", DoubleType, nullable = true),
+        StructField("Total Cost", DoubleType, nullable = true),
+        StructField("Total Profit", DoubleType, nullable = true)
       )
     )
 
     // read csv file
     val twoMCSVFile =
       spark.read
-        .option("header", true)
-        .option("inferSchema", true)
+        .option("header", value = true)
+        .option("inferSchema", value = true)
         .option("dateFormat", "yyyyMMdd")
         .schema(schemaToChange)
         .csv(filePath + recordedFileName)
@@ -96,7 +96,7 @@ object ConvertToParquet {
       .option("compression", "none")
       .format("parquet")
       .mode(SaveMode.Overwrite)
-      .save("/tmp/2mSalesRecored")
+      .save("/tmp/2mSalesRecord")
 
   }
 }
