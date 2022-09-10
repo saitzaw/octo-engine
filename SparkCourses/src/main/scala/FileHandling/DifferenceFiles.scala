@@ -49,7 +49,7 @@ object DifferenceFiles {
     try {
       val csvFilePath = "resources/zipcodes.csv"
       if (Files.exists(Paths.get(csvFilePath))) {
-        val zipcodeCSVDF = spark.read.option("header", true).csv(csvFilePath)
+        val zipcodeCSVDF = spark.read.option("header", value = true).csv(csvFilePath)
 
         //select required column
         val selectedCSVZipCodeDF = zipcodeCSVDF
