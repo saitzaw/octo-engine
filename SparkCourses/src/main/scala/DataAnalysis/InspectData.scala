@@ -1,7 +1,7 @@
 package DataAnalysis
 
 import org.apache.spark.sql.{Column, SparkSession}
-import org.apache.spark.sql.functions.{col, count, isnan, when}
+import org.apache.spark.sql.functions.{col, count, when}
 
 object InspectData {
   def csvFilePath(csvFileName: String): String = {
