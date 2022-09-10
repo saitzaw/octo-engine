@@ -67,7 +67,7 @@ object BasicStatistics {
       .master("local")
       .getOrCreate()
 
-    val csvFileName = csvFileReader("2mSalesRecords.csv")
+    val csvFileName = csvFileReader("5mSalesRecords.csv")
 
     val fileToAnalyst = spark.read
       .option("header", true)
